@@ -2,7 +2,7 @@
 #include <QWidget>
 #include <QHBoxLayout>
 
-//#include <genn/netview.hpp>
+#include <genn/netview.hpp>
 
 #include <game.hpp>
 
@@ -11,19 +11,29 @@ public:
 	QHBoxLayout layout;
 	GameQt field;
 	
-	//Network net;
-	//NetView netview;
+	NetworkGene gene;
+	NetView netview;
 	
-	Window() : QWidget()//,
-		//net(), netview(net)
+	Window() : QWidget(),
+		gene(), netview()
 	{
-		resize(800, 800);
+		resize(1200, 600);
 		setWindowTitle("Evo2048");
 		
-		layout.addWidget(&field);
-		//layout.addWidget(&netview);
+		layout.addWidget(&field, 1);
+		layout.addWidget(&netview, 1);
 		
 		setLayout(&layout);
+		
+		gene.nodes[NodeID(1)] = NodeGene(1);
+		gene.nodes[NodeID(2)] = NodeGene(-1);
+		gene.nodes[NodeID(3)] = NodeGene(0);
+		
+		gene.links[LinkID(1,3)] = LinkGene(1);
+		gene.links[LinkID(2,3)] = LinkGene(-1);
+		
+		netview.sync(gene);
+		netview.move(0.0);
 	}
 	
 	void keyPressEvent(QKeyEvent *event) override {
@@ -41,7 +51,6 @@ int main(int argc, char *argv[]) {
 	window.show();
 	
 	window.field.reset();
-	// window.field.update();
 
 	return app.exec();
 }

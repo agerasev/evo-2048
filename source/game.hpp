@@ -46,8 +46,8 @@ public:
 						}
 						break;
 					}
-				}
 				count -= 1;
+				}
 			}
 		}
 	}

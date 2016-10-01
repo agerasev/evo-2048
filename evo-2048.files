@@ -15,3 +15,5 @@ libgenn-qt/CMakeLists.txt
 libgenn-qt/libgenn/source/network.cpp
 libgenn-qt/source/netview.cpp
 libgenn-qt/include/genn/netview.hpp
+libgenn-qt/libgenn/include/genn/gene.hpp
+libgenn-qt/libgenn/include/genn/mutator.hpp
